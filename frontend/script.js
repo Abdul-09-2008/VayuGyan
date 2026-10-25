@@ -1,7 +1,7 @@
 // ==========================================
 // CONFIGURATION: Environment-Aware API URL
 // ==========================================
-const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+window.API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://127.0.0.1:8000'
   : 'https://vayugyan.onrender.com'; // Replace with your actual live Render backend URL
 
