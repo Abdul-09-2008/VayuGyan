@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VayuGyan — Technology & Innovation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand-group">
+        <img src =  "images/logo.png" alt = "Logo" class = "logo-img">
+      </div>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="shop.html" class="nav-link">Products</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <a href="login.html" id="authNavBtn" class="nav-btn">Get Started</a>
+    </div>
+  </nav>
+
+  
+  <section class="pin-section" id="pinSection">
+    <div class="hero-stage">
+
+      
+      <div class="left-hero-panel" id="leftPanel">
+        <h1 class="hero-title">Cutting-Edge Software. Smart Hardware. Built For the Future.</h1>
+        <p class="hero-subtitle">Custom software & innovative hardware solutions tailored to power your ideas.</p>
+        <p class="hero-description">We design and develop bespoke software architectures alongside specialized embedded hardware.</p>
+
+        <div class="hero-actions">
+          <a href="shop.html" class="btn-primary">Explore Products</a>
+          <a href="about.html" class="btn-secondary">How We Work</a>
+        </div>
+
+        <div class="feature-cards-row">
+          <div class="feature-card">
+            <h3>Custom Software</h3>
+            <p>Scalable web, mobile, and enterprise apps.</p>
+          </div>
+          <div class="feature-card">
+            <h3>IoT & Hardware</h3>
+            <p>Specialized embedded devices engineered to connect.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Seamless Integration</h3>
+            <p>Uniting software and hardware into one ecosystem.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-hero-panel">
+
+
+        <div class="analog-watch-container" id="watchContainer">
+          <div class="strap strap-top"></div>
+          <div class="watch-case">
+            <div class="bezel">
+              <div class="dial">
+                <div class="watch-brand">VAYUGYAN</div>
+                <div class="hand hour-hand" id="hourHand"></div>
+                <div class="hand minute-hand" id="minuteHand"></div>
+                <div class="hand second-hand" id="secondHand"></div>
+                <div class="center-cap"></div>
+              </div>
+            </div>
+          </div>
+          <div class="strap strap-bottom"></div>
+        </div>
+
+        <div class="floating-badge badge-iot" id="badgeIot">Defining Future</div>
+
+        <div class="phone-composition-wrapper" id="phoneWrapper">
+          <div class="phone-hardware">
+            <div class="phone-viewport">
+              <div class="phone-header">
+                <div class="phone-status-bar">
+                  <span id="phoneClock">09:41</span>
+                  <span>5G 🔋</span>
+                </div>
+                <strong class="app-title">VayuGyan Products</strong>
+              </div>
+
+              <div class="phone-scroll-content" id="phoneScrollContent">
+                
+                <div class="project-slide">
+                  <span class="project-tag tag-safegrid">SafeGrid APP v1.0</span>
+                  <h2 class="project-title">SafeGrid APP</h2>
+                  <p class="project-desc">Dedicated SoS Button in an Analogue Watch.</p>
+                  <div class="metric-box">
+                    <div class="metric-row"><span>Status</span><span class="status-green">Coming Soon</span></div>
+                  </div>
+                </div>
+
+                <div class="project-slide">
+                  <span class="project-tag tag-krishi">KrishiSetu AI</span>
+                  <h2 class="project-title">Smart Agriculture</h2>
+                  <p class="project-desc">Scanning Vegetables Quality On The Go.</p>
+                  <div class="metric-box">
+                    <div class="metric-row"><span>Status</span><span class="status-green">Comiing Soon</span></div>
+                  </div>
+                </div>
+
+                <div class="project-slide">
+                  <span class="project-tag tag-doc">BorderGuard AI</span>
+                  <h2 class="project-title">Enterprise OCR Suite</h2>
+                  <p class="project-desc">Automated document verification and compliance processing.</p>
+                  <div class="metric-box">
+                    <div class="metric-row"><span>Status</span><span class="status-green">Coming Soon</span></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <footer class="website-footer">
+    <div class="footer-container">
+      <div class="footer-brand">VayuGyan</div>
+      <p class="footer-quote">"Bridging the physical and digital worlds to engineer intelligence that empowers tomorrow."</p>
+      <p class="footer-copyright">© 2026 VayuGyan Technologies. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

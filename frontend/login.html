@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Access — VayuGyan</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Google Identity Services SDK -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand-group">
+        <img src="images/logo.png" alt="VayuGyan Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+        <span class="nav-brand" style="display:none;">VayuGyan</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="shop.html" class="nav-link">Products</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <a href="login.html" id="authNavBtn" class="nav-btn active">Account</a>
+    </div>
+  </nav>
+
+  <!-- Login Section -->
+  <main class="auth-main-section">
+    <div class="auth-container">
+      
+      <!-- Side Branding & Security Badge -->
+      <aside class="auth-branding-panel">
+        <span class="auth-badge">🛡️ SafeGrid OS Gateway</span>
+        <h1 class="auth-hero-title">Secure Telematics & AI Console</h1>
+        <p class="auth-hero-desc">
+          Log in to manage your connected wearable devices, monitor SafeGrid regional mesh nodes, or access enterprise AI OCR licenses.
+        </p>
+
+        <div class="auth-features-list">
+          <div class="auth-feature-item">
+            <div class="feature-icon">🛰️</div>
+            <div>
+              <h4>Real-time Telemetry Dispatch</h4>
+              <p>Live coordinates and automated SOS trigger logs.</p>
+            </div>
+          </div>
+          <div class="auth-feature-item">
+            <div class="feature-icon">🔐</div>
+            <div>
+              <h4>End-to-End Encryption</h4>
+              <p>Multi-relay fallback with hardware-backed keys.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-system-status">
+          <span class="pulse-dot"></span>
+          <span>Authentication Node: <strong>Guwahati-IN #01 Active</strong></span>
+        </div>
+      </aside>
+
+      <!-- Interactive Form Container -->
+      <section class="auth-form-card">
+        
+        <!-- Toggle Tabs -->
+        <div class="auth-tabs">
+          <button type="button" class="auth-tab-btn active" id="tabSignIn">Sign In</button>
+          <button type="button" class="auth-tab-btn" id="tabRegister">Create Account</button>
+        </div>
+
+        <!-- Official Google Sign-In Container -->
+        <div class="sso-wrapper">
+          <div id="g_id_onload"
+               data-client_id="601432486990-bm3b2bnkba32ja7iqp2juejon8ac9j1u.apps.googleusercontent.com"
+               data-callback="handleCredentialResponse"
+               data-auto_prompt="false">
+          </div>
+          <div class="g_id_signin" 
+               data-type="standard" 
+               data-size="large" 
+               data-theme="outline" 
+               data-text="sign_in_with" 
+               data-shape="rectangular" 
+               data-logo_alignment="left"
+               data-width="100%">
+          </div>
+        </div>
+
+        <div class="auth-divider">
+          <span>or continue with email</span>
+        </div>
+
+        <!-- Sign-In Form -->
+        <form id="signInForm" class="auth-form">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="name@domain.com" required>
+          </div>
+
+          <div class="form-group" id="passwordGroup">
+            <div class="label-row">
+              <label for="loginPassword">Password</label>
+              <a href="#" class="forgot-link" id="forgotPasswordLink">Forgot?</a>
+            </div>
+            <div class="password-input-wrapper">
+              <input type="password" id="loginPassword" placeholder="••••••••">
+              <button type="button" class="toggle-password-btn" data-target="loginPassword">Show</button>
+            </div>
+          </div>
+
+          <!-- OTP & New Password Fields (Hidden by default) -->
+          <div id="otpResetContainer" style="display: none; background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 12px;">Enter the 6-digit OTP sent to your email and choose a new password.</p>
+            
+            <div class="form-group" style="margin-bottom: 10px;">
+              <label for="otpCode" style="font-size: 0.8rem;">6-Digit OTP Code</label>
+              <input type="text" id="otpCode" placeholder="123456" maxlength="6" style="letter-spacing: 2px; font-weight: bold;">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="newPassword" style="font-size: 0.8rem;">New Password</label>
+              <input type="password" id="newPassword" placeholder="Minimum 8 characters">
+            </div>
+
+            <!-- Resend OTP Button & Timer Container -->
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem;">
+              <span id="timerText" style="color: #64748b;">Resend code in <strong id="countdown">60</strong>s</span>
+              <button type="button" id="resendOtpBtn" style="background: none; border: none; color: #2563eb; font-weight: 600; cursor: pointer; padding: 0; display: none;">Resend OTP</button>
+            </div>
+          </div>
+
+          <!-- Clean Error/Success Notice Box -->
+          <div id="inlineAuthNotice" style="display: none; margin-bottom: 16px; text-align: center;">
+            <p id="inlineNoticeText" style="color: #ef4444; font-size: 0.88rem; font-weight: 600; margin: 0;"></p>
+          </div>
+
+          <!-- Dynamic Submit Button -->
+          <button type="submit" id="signInSubmitBtn" class="auth-submit-btn">Sign In with Email</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" class="auth-form" style="display: none;">
+          <div class="form-group">
+            <label for="regName">Full Name</label>
+            <input type="text" id="regName" placeholder="e.g. John Doe" required>
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail">Email Address</label>
+            <input type="email" id="regEmail" placeholder="name@domain.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="regPassword">Password</label>
+            <div class="password-input-wrapper">
+              <input type="password" id="regPassword" placeholder="Minimum 8 characters" required>
+              <button type="button" class="toggle-password-btn" data-target="regPassword">Show</button>
+            </div>
+          </div>
+
+          <div id="registerAuthNotice" style="display: none; margin-bottom: 16px; text-align: center;">
+            <p id="registerNoticeText" style="color: #ef4444; font-size: 0.88rem; font-weight: 600; margin: 0;"></p>
+          </div>
+
+          <button type="submit" id="regSubmitBtn" class="auth-submit-btn">Create Account</button>
+        </form>
+
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="website-footer">
+    <div class="footer-container">
+      <div class="footer-brand">VayuGyan</div>
+      <p class="footer-quote">"Bridging the physical and digital worlds to engineer intelligence that empowers tomorrow."</p>
+      <p class="footer-copyright">© 2026 VayuGyan Technologies. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="login.js"></script>
+</body>
+</html>

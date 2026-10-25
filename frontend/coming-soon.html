@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon — VayuGyan</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       VayuGyan Coming Soon Theme — Light Match
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #F7F5F0;
+      color: #0F172A;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 20px;
+    }
+
+    /* Navbar Brand */
+    .coming-soon-nav {
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .brand-logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0F172A;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .back-home {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748B;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .back-home:hover {
+      color: #0F172A;
+    }
+
+    /* Hero Section */
+    .coming-hero {
+      text-align: center;
+      max-width: 700px;
+      margin-bottom: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(37, 99, 235, 0.1);
+      color: #2563eb;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .coming-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    .coming-hero p {
+      font-size: 1.05rem;
+      color: #64748B;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    /* Future Features Roadmap Grid */
+    .roadmap-section {
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 10px;
+    }
+
+    .roadmap-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .roadmap-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+      transition: transform 0.2s ease;
+    }
+
+    .roadmap-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .roadmap-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 8px;
+    }
+
+    .roadmap-card p {
+      font-size: 0.88rem;
+      color: #64748B;
+      line-height: 1.5;
+    }
+
+    /* Notify Form */
+    .notify-form-wrapper {
+      margin-top: 10px;
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .input-row {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+    }
+
+    .input-row input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      background: #FFFFFF;
+      font-size: 0.95rem;
+      color: #0F172A;
+      outline: none;
+    }
+
+    .input-row input:focus {
+      border-color: #0F172A;
+      box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+    }
+
+    .notify-btn {
+      background: #0F172A;
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .notify-btn:hover {
+      background: #1E293B;
+    }
+
+    /* On-Screen Status Banner */
+    .status-banner {
+      display: none;
+      width: 100%;
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .status-banner.success {
+      background-color: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .status-banner.error {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    @media (max-width: 640px) {
+      .coming-hero h1 {
+        font-size: 2.2rem;
+      }
+      .input-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="coming-soon-nav">
+    <a href="index.html" class="brand-logo">VayuGyan</a>
+    <a href="index.html" class="back-home">← Back to Home</a>
+  </nav>
+
+  <!-- Hero Information -->
+  <section class="coming-hero">
+    <span class="badge">Next Generation Release</span>
+    <h1>Something Extraordinary Is Coming</h1>
+    <p>We are engineering advanced technological solutions to redefine safety, monitoring, and environmental intelligence. Stay tuned for our upcoming launch.</p>
+
+    <!-- Notify Me Form -->
+    <form id="notifyForm" class="notify-form-wrapper">
+      <div class="input-row">
+        <input type="email" id="notifyEmail" placeholder="your@email.com" required>
+        <button type="submit" id="notifyBtn" class="notify-btn">Notify Me</button>
+      </div>
+      
+      <!-- On-Screen Feedback Banner -->
+      <div id="notifyStatusBanner" class="status-banner"></div>
+    </form>
+  </section>
+
+  <!-- Future Features Roadmap -->
+  <section class="roadmap-section">
+    <h2 class="roadmap-title">Upcoming Future Features</h2>
+    <div class="roadmap-grid">
+      
+      <div class="roadmap-card">
+        <div class="card-icon">🛰️</div>
+        <h3>Real-Time GPS Telemetry</h3>
+        <p>Live tracking integration maps for hardware units with micro-location accuracy and emergency signal routing.</p>
+      </div>
+
+      <div class="roadmap-card">
+        <div class="card-icon">⚡</div>
+        <h3>Advanced AI Diagnostics</h3>
+        <p>Automated sensor data inspection and predictive anomaly alerts powered by custom neural network algorithms.</p>
+      </div>
+
+      <div class="roadmap-card">
+        <div class="card-icon">📊</div>
+        <h3>Enterprise Analytics Hub</h3>
+        <p>Comprehensive administrative dashboard with historical log filtering, exportable reports, and usage metrics.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Script for Notification Handler -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const notifyForm = document.getElementById('notifyForm');
+      const notifyEmail = document.getElementById('notifyEmail');
+      const statusBanner = document.getElementById('notifyStatusBanner');
+
+      if (notifyForm) {
+        notifyForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const emailValue = notifyEmail ? notifyEmail.value.trim() : '';
+
+          if (!emailValue) return;
+
+          // Display confirmation text on screen
+          if (statusBanner) {
+            statusBanner.className = 'status-banner success';
+            statusBanner.style.display = 'block';
+            statusBanner.textContent = 'Thank you! You have been successfully added to the VayuGyan priority notification list.';
+          }
+
+          // Reset input field
+          notifyForm.reset();
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

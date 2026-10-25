@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — VayuGyan</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand-group">
+        <img src =  "images/logo.png" alt = "Logo" class = "logo-img">
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="shop.html" class="nav-link">Products</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact Us</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <a href="login.html" id="authNavBtn" class="nav-btn">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- Main Container Layout matching your original screenshot -->
+  <div class="contact-page-container">
+    
+    <!-- Left Column: Info Cards & Systems Operational Badge -->
+    <div class="contact-left-column">
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <div class="info-content">
+          <h3>Headquarters</h3>
+          <p class="primary-text">Guwahati, Assam, India</p>
+          <p class="secondary-text">Core R&D & Embedded Engineering Hub</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">✉️</div>
+        <div class="info-content">
+          <h3>Email Us</h3>
+          <p class="primary-text">Vayugyan00@gmail.com</p>
+          <p class="secondary-text">Response time within 24 hours</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📞</div>
+        <div class="info-content">
+          <h3>Phone No.</h3>
+          <p class="primary-text">+91 00000 00000</p>
+          <p class="secondary-text">Mon - Fri, 9:00 AM - 6:00 PM IST</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">📸</div>
+        <div class="info-content">
+          <h3>Follow Us</h3>
+          <p class="primary-text">@vayugyan.ind</p>
+          <p class="secondary-text">Updates, behind-the-scenes & hardware teasers</p>
+        </div>
+      </div>
+
+      <!-- Systems Operational Status Card -->
+      <div class="system-status-card">
+        <div class="status-indicator-row">
+          <span class="status-dot"></span>
+          <h4>VayuGyan</h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Contact Form Card -->
+    <form id="contactForm" class="contact-form-card">
+      <h2>Send a Message</h2>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contactName">Full Name</label>
+          <input type="text" id="contactName" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <label for="contactEmail">Email Address</label>
+          <input type="email" id="contactEmail" placeholder="your@email.com" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="contactInquiry">Inquiry Type</label>
+        <select id="contactInquiry">
+          <option value="Stealth Hardware / Smart Watch">Stealth Hardware / Smart Watch</option>
+          <option value="Custom Development & Web">Custom Development & Web</option>
+          <option value="Partnership & Investment">Partnership & Investment</option>
+          <option value="General Inquiry">General Inquiry</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="contactMessage">Your Message</label>
+        <textarea id="contactMessage" rows="5" placeholder="Tell us about your requirement..." required></textarea>
+      </div>
+
+      <!-- On-Screen Status Banner (Replaces alert pop-ups) -->
+      <div id="contactStatusBanner" class="status-banner"></div>
+
+      <button type="submit" id="contactSubmitBtn" class="submit-btn">Send Message</button>
+    </form>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

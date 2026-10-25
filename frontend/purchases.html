@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Purchases — VayuGyan</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.purchases-page {
+      background-color: #F7F5F0 !important;
+      color: #0F172A !important;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    .purchases-main-section {
+      max-width: 900px;
+      margin: 0 auto 60px auto !important;
+      padding-top: 130px !important;
+      padding-left: 24px !important;
+      padding-right: 24px !important;
+    }
+
+    .purchases-header-card {
+      background: #FFFFFF !important;
+      border: 1px solid rgba(15, 23, 42, 0.08) !important;
+      border-radius: 16px;
+      padding: 32px 40px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+    }
+
+    .section-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 16px;
+    }
+
+    .section-title-row h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0F172A;
+    }
+
+    .purchase-count-badge {
+      background: #F1F5F9;
+      color: #0F172A;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    .purchases-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .order-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 20px;
+      background-color: #F8FAFC;
+    }
+
+    .order-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed #CBD5E1;
+      margin-bottom: 16px;
+    }
+
+    .order-id {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #0F172A;
+    }
+
+    .order-date {
+      font-size: 0.82rem;
+      color: #64748B;
+    }
+
+    .order-item-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .order-item-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+    }
+
+    .order-item-details {
+      flex: 1;
+    }
+
+    .order-item-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #0F172A;
+      margin-bottom: 4px;
+    }
+
+    .order-item-qty {
+      font-size: 0.85rem;
+      color: #64748B;
+    }
+
+    .order-item-price {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #0F172A;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 50px 20px;
+      color: #64748B;
+    }
+
+    .empty-state p {
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+
+    .shop-now-btn {
+      display: inline-block;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body class="purchases-page">
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand-group">
+        <span class="nav-brand">VayuGyan</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="shop.html" class="nav-link">Products</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contacts</a></li>
+      </ul>
+
+      <a href="profile.html" id="authNavBtn" class="nav-btn">Account</a>
+    </div>
+  </nav>
+
+  <!-- Main Section -->
+  <main class="purchases-main-section">
+    <div class="purchases-header-card">
+      <div class="section-title-row">
+        <h2>My Purchased Orders</h2>
+        <span id="purchaseCountBadge" class="purchase-count-badge">0 Items</span>
+      </div>
+
+      <div id="purchasesListContainer" class="purchases-list-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('purchasesListContainer');
+      const countBadge = document.getElementById('purchaseCountBadge');
+      
+      const savedOrders = JSON.parse(localStorage.getItem('userOrders') || '[]');
+
+      if (savedOrders.length === 0) {
+        if (countBadge) countBadge.textContent = '0 Items';
+        container.innerHTML = `
+          <div class="empty-state">
+            <p>You have not made any purchases yet.</p>
+            <a href="shop.html" class="shop-now-btn">Explore Products</a>
+          </div>
+        `;
+        return;
+      }
+
+      let totalCount = 0;
+      savedOrders.forEach(o => {
+        if (o.items) o.items.forEach(i => totalCount += (i.quantity || 1));
+      });
+
+      if (countBadge) countBadge.textContent = `${totalCount} Item${totalCount > 1 ? 's' : ''}`;
+
+      container.innerHTML = savedOrders.map(order => `
+        <div class="order-card">
+          <div class="order-card-header">
+            <div>
+              <span class="order-id">Order #${order.orderId}</span>
+              <span style="margin: 0 8px; color: #CBD5E1;">•</span>
+              <span class="order-date">${order.date}</span>
+            </div>
+            <span style="color: #166534; background: #DCFCE7; font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 12px;">
+              ${order.status || 'Confirmed'}
+            </span>
+          </div>
+          
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            ${order.items.map(item => `
+              <div class="order-item-row">
+                <img src="${item.image || 'https://via.placeholder.com/80'}" alt="${item.name}" class="order-item-img">
+                <div class="order-item-details">
+                  <div class="order-item-title">${item.name}</div>
+                  <div class="order-item-qty">Quantity: ${item.quantity || 1}</div>
+                </div>
+                <div class="order-item-price">₹${item.price}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

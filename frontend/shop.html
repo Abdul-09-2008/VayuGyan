@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products & Solutions — VayuGyan</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand-group">
+        <img src="images/logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+        <span class="nav-brand" style="display:none;">VayuGyan</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="shop.html" class="nav-link active">Products</a></li>
+        <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+
+      <a href="login.html" id="authNavBtn" class="nav-btn">Get Started</a>
+    </div>
+  </nav>
+
+  <header class="shop-header">
+    <div class="shop-header-container">
+      <span class="shop-tag">VayuGyan Store</span>
+      <h1 class="shop-title">Engineered Hardware & Intelligence</h1>
+      <p class="shop-subtitle">Explore our range of stealth safety wearables, specialized IoT telematics, and enterprise AI software.</p>
+      
+      <div class="category-tabs">
+        <button class="tab-btn active" data-category="all">All Products</button>
+        <button class="tab-btn" data-category="wearable">Hardware</button>
+        <button class="tab-btn" data-category="software">Software Suites</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shop-main-content">
+    <div class="shop-container">
+      
+      <div class="product-grid" id="productGrid">
+
+        <div class="product-card" data-category="wearable">
+          <div class="product-badge">Flagship</div>
+          <div class="product-image-box">
+            <img src="images/coming-soon.jpg" alt="Stealth Smart Watch" class="product-image">
+          </div>
+          <div class="product-info">
+            <span class="product-category">Wearable Hardware</span>
+            <h3 class="product-title">CASoSW 1</h3>
+            <p class="product-desc">Camouflaged Analogue SoS Watch Discrete SOS trigger, cellular connectivity, and real-time GPS coordinates dispatch.</p>
+            <div class="product-bottom">
+              <div class="price-wrapper">
+                <span class="product-price">Not Estimated</span>
+                <!-- <span class="product-mrp">₹6,999</span> -->
+              </div>
+              <div class="product-bottom">
+                <a href="coming-soon.html" class="buy-btn">Coming Soon</a>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+        <div class="product-card" data-category="software">
+            <div class="product-badge software">Software</div>
+            <div class="product-image-box">
+                <img src="images/safegrid.jpeg" alt="DocVerify AI Suite" class="product-image">
+            </div>
+            <div class="product-info">
+                <span class="product-category">Women Safety</span>
+                <h3 class="product-title">SafeGrid</h3>
+                <p class="product-desc">AI Based Women Safety Software</p>
+                <div class="product-bottom">
+                    <a href="coming-soon.html" class="buy-btn">Coming Soon</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="wearable">
+          <div class="product-image-box">
+            <img src="images/coming-soon.jpg" alt="KrishiSetu Soil Probe" class="product-image" onerror="this.src='https://www.magnific.com/free-photos-vectors/coming-soon-poster'">
+          </div>
+          <div class="product-info">
+            <span class="product-category">Smart Agriculture</span>
+            <h3 class="product-title">KrishiSetu Probe</h3>
+            <p class="product-desc">Integrated NPK moisture sensor telemetry unit with automated irrigation valve trigger.</p>
+            <div class="product-bottom">
+              <div class="price-wrapper">
+                <span class="product-price">Not Estimated</span>
+              </div>
+              <div class="product-bottom">
+                <a href="coming-soon.html" class="buy-btn">Coming Soon</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-category="software">
+          <div class="product-badge software">Software</div>
+          <div class="product-image-box">
+            <img src="images/coming-soon.jpg" alt="DocVerify AI Suite" class="product-image" onerror="this.src='https://www.magnific.com/free-photos-vectors/coming-soon-poster'">
+          </div>
+          <div class="product-info">
+            <span class="product-category">Enterprise AI</span>
+            <h3 class="product-title">DocVerify AI Suite</h3>
+            <p class="product-desc">FastAPI-powered OCR document verification license for automated compliance.</p>
+            <div class="product-bottom">
+              <div class="price-wrapper">
+                <span class="product-price">Not Estimated</span>
+                <span class="price-period">/ yr</span>
+              </div>
+              <div class="product-bottom">
+                <a href="coming-soon.html" class="buy-btn">Coming Soon</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="website-footer">
+    <div class="footer-container">
+      <div class="footer-brand">VayuGyan</div>
+      <p class="footer-quote">"Bridging the physical and digital worlds to engineer intelligence that empowers tomorrow."</p>
+      <p class="footer-copyright">© 2026 VayuGyan Technologies. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="shop.js"></script>
+</body>
+</html>
