@@ -1,7 +1,7 @@
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://127.0.0.1:8000'
   : 'https://vayugyan.onrender.com';
-  
+ 
 function parseJwt(token) {
   try {
     const base64Url = token.split('.')[1];
@@ -59,8 +59,6 @@ function generateLetterAvatar(name) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const API_URL = 'http://127.0.0.1:8000';
-
   const referrer = document.referrer;
   if (referrer && referrer.includes(window.location.hostname) && !referrer.includes('login.html')) {
     localStorage.setItem('redirectAfterLogin', referrer);
@@ -172,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearNotices();
 
       const nameInput = document.getElementById('regName').value.trim();
-      let emailInput = regEmailInput ? regEmailInput.value.trim() : '';
+      const emailInput = regEmailInput ? regEmailInput.value.trim() : '';
       const passwordInput = document.getElementById('regPassword').value.trim();
 
       if (passwordInput.length < 8) {
@@ -405,7 +403,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return;
       }
-
 
       const passwordInput = document.getElementById('loginPassword').value.trim();
 
