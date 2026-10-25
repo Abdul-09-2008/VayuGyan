@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      emailInput = document.getElementById('loginEmail').value.trim();
+
       const passwordInput = document.getElementById('loginPassword').value.trim();
 
       setButtonLoading(signInSubmitBtn, true, "Authenticating...");
