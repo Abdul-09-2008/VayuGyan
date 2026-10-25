@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearNotices();
 
       const nameInput = document.getElementById('regName').value.trim();
-      const emailInput = regEmailInput ? regEmailInput.value.trim() : '';
+      let emailInput = regEmailInput ? regEmailInput.value.trim() : '';
       const passwordInput = document.getElementById('regPassword').value.trim();
 
       if (passwordInput.length < 8) {
