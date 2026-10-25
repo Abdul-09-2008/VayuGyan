@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateAvatarUI();
 
-  // --- Image Cropper Logic ---
   const avatarUploadInput = document.getElementById('avatarUploadInput');
   const cropModal = document.getElementById('cropModal');
   const cropCanvas = document.getElementById('cropCanvas');
@@ -163,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Sign Out Modal Logic ---
   const signOutBtn = document.getElementById('signOutBtn');
   const signOutModal = document.getElementById('signOutModal');
   const cancelSignOutBtn = document.getElementById('cancelSignOutBtn');
@@ -192,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Status Banner Helper ---
   const statusBanner = document.getElementById('profileStatusBanner');
   function showBanner(message, type = 'success') {
     if (!statusBanner) return;
@@ -209,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
     statusBanner.textContent = message;
   }
 
-  // --- Profile Form Submit ---
   const profileForm = document.getElementById('profileForm');
   if (profileForm) {
     profileForm.addEventListener('submit', (e) => {

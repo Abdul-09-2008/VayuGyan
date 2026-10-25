@@ -1,4 +1,3 @@
-// Global API URL configuration for login
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://127.0.0.1:8000'
   : 'https://vayugyan.onrender.com';
@@ -20,7 +19,6 @@ function parseJwt(token) {
   }
 }
 
-// Global Callback function for Google Sign-In Button
 window.handleCredentialResponse = function(response) {
   const responsePayload = parseJwt(response.credential);
 
@@ -38,7 +36,6 @@ window.handleCredentialResponse = function(response) {
   }
 };
 
-// Helper to generate local initial letter avatar canvas
 function generateLetterAvatar(name) {
   const firstLetter = name ? name.charAt(0).toUpperCase() : 'U';
   
@@ -64,19 +61,16 @@ function generateLetterAvatar(name) {
 document.addEventListener('DOMContentLoaded', () => {
   const API_URL = 'http://127.0.0.1:8000';
 
-  // Capture referrer for post-login redirection
   const referrer = document.referrer;
   if (referrer && referrer.includes(window.location.hostname) && !referrer.includes('login.html')) {
     localStorage.setItem('redirectAfterLogin', referrer);
   }
 
-  // Interactive Tab Switching Elements
   const tabSignIn = document.getElementById('tabSignIn');
   const tabRegister = document.getElementById('tabRegister');
   const signInForm = document.getElementById('signInForm');
   const registerForm = document.getElementById('registerForm');
 
-  // Inline Notice Elements
   const signInAuthNotice = document.getElementById('inlineAuthNotice');
   const signInNoticeText = document.getElementById('inlineNoticeText');
 
@@ -87,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let isEmailAlreadyRegisteredMode = false;
 
-  // UI Feedback Helper Functions
   function setButtonLoading(button, isLoading, loadingText = "Processing...", originalText = "") {
     if (!button) return;
     if (isLoading) {
@@ -106,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!noticeBox || !noticeTextEl) return;
     
     noticeBox.style.display = 'block';
-    noticeTextEl.className = ''; // clear previous classes
+    noticeTextEl.className = '';
 
     if (type === 'error') {
       noticeTextEl.style.color = "#ef4444";
@@ -125,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (registerAuthNotice) registerAuthNotice.style.display = 'none';
   }
 
-  // Reset button state if the user changes their email address
   if (regEmailInput) {
     regEmailInput.addEventListener('input', () => {
       if (isEmailAlreadyRegisteredMode) {
@@ -154,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Password Visibility Toggles
   document.querySelectorAll('.toggle-password-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const targetId = e.target.getAttribute('data-target');
@@ -166,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Registration Form Submission
   if (registerForm) {
     registerForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -190,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Activate Spinner & Loading Notice
       setButtonLoading(regSubmitBtn, true, "Creating Account...");
       showNotice(registerAuthNotice, registerNoticeText, "Creating your VayuGyan account...", 'loading');
 
@@ -235,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Sign-In & Forgot Password / OTP Workflow
   const forgotPasswordLink = document.getElementById('forgotPasswordLink');
   const otpResetContainer = document.getElementById('otpResetContainer');
   const passwordGroup = document.getElementById('passwordGroup');
@@ -270,7 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000);
   }
 
-  // Handle Resend OTP Click
   if (resendOtpBtn) {
     resendOtpBtn.addEventListener('click', async () => {
       clearNotices();
@@ -313,7 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (!isOtpMode) {
-        // Step 1: Request OTP with Spinner & Notice
         setButtonLoading(signInSubmitBtn, true, "Sending OTP...");
         showNotice(signInAuthNotice, signInNoticeText, "Connecting to mail server & dispatching OTP...", 'loading');
 
@@ -347,7 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
           showNotice(signInAuthNotice, signInNoticeText, "Server connection error.", 'error');
         }
       } else {
-        // Toggle back to normal login if user clicks cancel
         isOtpMode = false;
         passwordGroup.style.display = 'block';
         otpResetContainer.style.display = 'none';
@@ -367,7 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const emailInput = document.getElementById('loginEmail').value.trim();
 
       if (isOtpMode) {
-        // Step 2: Submit OTP and new password
         const otpVal = otpCodeInput ? otpCodeInput.value.trim() : '';
         const newPassVal = newPasswordInput ? newPasswordInput.value.trim() : '';
 
@@ -422,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Normal Login Flow
+      emailInput = document.getElementById('loginEmail').value.trim();
       const passwordInput = document.getElementById('loginPassword').value.trim();
 
       setButtonLoading(signInSubmitBtn, true, "Authenticating...");

@@ -13,25 +13,20 @@ from pydantic import BaseModel, EmailStr
 from backend import models
 from backend.database import engine, get_db
 
-# Create database tables automatically on startup
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="VayuGyan Production API", version="1.0")
 
-# --- CORS MIDDLEWARE BLOCK ---
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all frontend origins during development & production
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all HTTP methods (POST, GET, etc.)
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
-# -----------------------------
 
-# Temporary in-memory store for OTPs during development: { email: otp_code }
 otp_store = {}
 
-# Pydantic Schemas for Request Validation
 class UserCreate(BaseModel):
     full_name: str
     email: EmailStr
@@ -55,7 +50,6 @@ class ContactFormRequest(BaseModel):
     inquiry_type: str
     message: str
 
-# Helper functions for direct bcrypt hashing
 def hash_password(password: str) -> str:
     salt = bcrypt.gensalt(rounds=12)
     return bcrypt.hashpw(password.encode('utf-8'), salt).decode('utf-8')
@@ -63,7 +57,6 @@ def hash_password(password: str) -> str:
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
 
-# Function to send real emails via SMTP (Port 587 with STARTTLS)
 def send_otp_email(to_email: str, otp_code: str):
     smtp_server = os.getenv("SMTP_SERVER", "smtp.gmail.com")
     smtp_port = int(os.getenv("SMTP_PORT", 587))
@@ -107,7 +100,6 @@ def send_otp_email(to_email: str, otp_code: str):
         print(f"Failed to send email: {e}")
         raise HTTPException(status_code=500, detail=f"Email dispatch error: {str(e)}")
 
-# Helper function to dispatch contact form submissions to VayuGyan admin email
 def send_contact_notification(name: str, sender_email: str, inquiry_type: str, message_body: str):
     smtp_server = os.getenv("SMTP_SERVER", "smtp.gmail.com")
     smtp_port = int(os.getenv("SMTP_PORT", 587))
@@ -151,7 +143,6 @@ def send_contact_notification(name: str, sender_email: str, inquiry_type: str, m
         print(f"Failed to dispatch contact notification email: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to send email notification: {str(e)}")
 
-# 1. Register Endpoint
 @app.post("/api/auth/register", status_code=status.HTTP_201_CREATED)
 def register_user(user: UserCreate, db: Session = Depends(get_db)):
     existing_user = db.query(models.User).filter(models.User.email == user.email).first()
@@ -172,7 +163,6 @@ def register_user(user: UserCreate, db: Session = Depends(get_db)):
 
     return {"message": "Account created successfully", "email": new_user.email}
 
-# 2. Login Endpoint
 @app.post("/api/auth/login")
 def login_user(user: UserLogin, db: Session = Depends(get_db)):
     db_user = db.query(models.User).filter(models.User.email == user.email).first()
@@ -188,7 +178,6 @@ def login_user(user: UserLogin, db: Session = Depends(get_db)):
         }
     }
 
-# 3. Forgot Password Endpoint (Generates OTP & Emails User)
 @app.post("/api/auth/forgot-password")
 def forgot_password(payload: ForgotPasswordRequest, db: Session = Depends(get_db)):
     db_user = db.query(models.User).filter(models.User.email == payload.email).first()
@@ -202,7 +191,6 @@ def forgot_password(payload: ForgotPasswordRequest, db: Session = Depends(get_db
     
     return {"message": "OTP sent successfully to your email address!"}
 
-# 4. Reset Password with OTP Endpoint
 @app.post("/api/auth/reset-password-otp")
 def reset_password_otp(payload: ResetPasswordOTPRequest, db: Session = Depends(get_db)):
     stored_otp = otp_store.get(payload.email)
@@ -221,7 +209,6 @@ def reset_password_otp(payload: ResetPasswordOTPRequest, db: Session = Depends(g
     
     return {"message": "Password successfully reset! You can now sign in."}
 
-# 5. Contact Form Submission Endpoint
 @app.post("/api/contact")
 def handle_contact_form(payload: ContactFormRequest):
     send_contact_notification(payload.full_name, payload.email, payload.inquiry_type, payload.message)

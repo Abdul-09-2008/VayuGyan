@@ -5,15 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coming Soon — VayuGyan</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* ==========================================================================
-       VayuGyan Coming Soon Theme — Light Match
-       ========================================================================== */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -32,7 +28,6 @@
       padding: 40px 20px;
     }
 
-    /* Navbar Brand */
     .coming-soon-nav {
       width: 100%;
       max-width: 1000px;
@@ -62,7 +57,6 @@
       color: #0F172A;
     }
 
-    /* Hero Section */
     .coming-hero {
       text-align: center;
       max-width: 700px;
@@ -100,7 +94,6 @@
       margin-bottom: 30px;
     }
 
-    /* Future Features Roadmap Grid */
     .roadmap-section {
       width: 100%;
       max-width: 1000px;
@@ -152,7 +145,6 @@
       line-height: 1.5;
     }
 
-    /* Notify Form */
     .notify-form-wrapper {
       margin-top: 10px;
       width: 100%;
@@ -200,7 +192,6 @@
       background: #1E293B;
     }
 
-    /* On-Screen Status Banner */
     .status-banner {
       display: none;
       width: 100%;
@@ -237,31 +228,26 @@
 </head>
 <body>
 
-  <!-- Top Navigation -->
   <nav class="coming-soon-nav">
     <a href="index.html" class="brand-logo">VayuGyan</a>
     <a href="index.html" class="back-home">← Back to Home</a>
   </nav>
 
-  <!-- Hero Information -->
   <section class="coming-hero">
     <span class="badge">Next Generation Release</span>
     <h1>Something Extraordinary Is Coming</h1>
     <p>We are engineering advanced technological solutions to redefine safety, monitoring, and environmental intelligence. Stay tuned for our upcoming launch.</p>
 
-    <!-- Notify Me Form -->
     <form id="notifyForm" class="notify-form-wrapper">
       <div class="input-row">
         <input type="email" id="notifyEmail" placeholder="your@email.com" required>
         <button type="submit" id="notifyBtn" class="notify-btn">Notify Me</button>
       </div>
       
-      <!-- On-Screen Feedback Banner -->
       <div id="notifyStatusBanner" class="status-banner"></div>
     </form>
   </section>
 
-  <!-- Future Features Roadmap -->
   <section class="roadmap-section">
     <h2 class="roadmap-title">Upcoming Future Features</h2>
     <div class="roadmap-grid">
@@ -287,7 +273,6 @@
     </div>
   </section>
 
-  <!-- Script for Notification Handler -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const notifyForm = document.getElementById('notifyForm');
@@ -302,14 +287,12 @@
 
           if (!emailValue) return;
 
-          // Display confirmation text on screen
           if (statusBanner) {
             statusBanner.className = 'status-banner success';
             statusBanner.style.display = 'block';
             statusBanner.textContent = 'Thank you! You have been successfully added to the VayuGyan priority notification list.';
           }
 
-          // Reset input field
           notifyForm.reset();
         });
       }

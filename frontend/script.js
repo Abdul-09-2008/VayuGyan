@@ -1,14 +1,8 @@
-// ==========================================
-// CONFIGURATION: Environment-Aware API URL
-// ==========================================
 window.API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://127.0.0.1:8000'
-  : 'https://vayugyan.onrender.com'; // Replace with your actual live Render backend URL
+  : 'https://vayugyan.onrender.com';
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // 1. LIVE CLOCK & WATCH HANDS ANIMATION
-  // ==========================================
   function updateLiveTime() {
     const now = new Date();
 
@@ -44,9 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLiveTime();
   setInterval(updateLiveTime, 1000);
 
-  // ==========================================
-  // 2. GSAP SCROLLTRIGGER ANIMATIONS
-  // ==========================================
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -69,9 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .to("#phoneScrollContent", { y: -260, duration: 2 });
   }
 
-  // ==========================================
-  // 3. AUTHENTICATION & PROFILE AVATAR
-  // ==========================================
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   const navBtn = document.getElementById('authNavBtn');
 
@@ -80,9 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ==========================================
-// HELPER: CREATE PROFILE AVATAR ELEMENT
-// ==========================================
 function createProfileAvatarElement() {
   const userAvatar = localStorage.getItem('userAvatar') || localStorage.getItem('globalUserAvatar') || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80";
   

@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Bind Buy / Purchase buttons on product cards if present
   const buyBtns = document.querySelectorAll('.buy-btn, .product-buy-btn');
   buyBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -56,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const navBtn = document.getElementById('authNavBtn');
 
   if (isLoggedIn && navBtn) {
-    // Replace the "Get Started" button with a profile avatar container linking to profile.html
     navBtn.replaceWith(createProfileAvatarElement());
   }
 });
@@ -76,7 +74,6 @@ function createProfileAvatarElement() {
   return container;
 }
 
-// Global Purchase Saver Function for My Purchases Page
 function buyProduct(item) {
   const existingOrders = JSON.parse(localStorage.getItem('userOrders') || '[]');
 
@@ -101,6 +98,5 @@ function buyProduct(item) {
   existingOrders.unshift(newOrder);
   localStorage.setItem('userOrders', JSON.stringify(existingOrders));
 
-  // Redirect to Profile Page to show the purchased item
   window.location.href = 'profile.html';
 }

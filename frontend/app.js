@@ -1,4 +1,3 @@
-// Local YouTube/WhatsApp style canvas generator
 function generateLetterAvatar(name) {
   const firstLetter = name ? name.charAt(0).toUpperCase() : 'U';
   
@@ -30,11 +29,9 @@ function renderNavbarProfile() {
     const userName = localStorage.getItem('userName') || 'User Console';
     const userEmail = localStorage.getItem('userEmail') || 'user@vayugyan.com';
     
-    // Resolve avatar URL priority
     const letterAvatar = generateLetterAvatar(userName);
     const avatarUrl = localStorage.getItem('globalUserAvatar') || letterAvatar;
     
-    // If navbar profile is already mounted, update images and labels dynamically
     if (existingWrapper) {
       const avatarImgs = existingWrapper.querySelectorAll('img');
       avatarImgs.forEach(img => img.src = avatarUrl);
@@ -46,7 +43,6 @@ function renderNavbarProfile() {
       return;
     }
 
-    // Build profile card DOM if not yet created
     if (navBtn) {
       const profileWrapper = document.createElement('div');
       profileWrapper.className = 'nav-profile-wrapper';
@@ -128,7 +124,6 @@ function renderNavbarProfile() {
         }
       });
 
-      // Custom Confirmation Modal Trigger on Sign Out Click
       signOutBtn.addEventListener('click', () => {
         let modal = document.getElementById('signOutModal');
         if (!modal) {
@@ -165,6 +160,4 @@ function renderNavbarProfile() {
 }
 
 document.addEventListener('DOMContentLoaded', renderNavbarProfile);
-
-// Listen for profile changes across tabs or pages
 window.addEventListener('storage', renderNavbarProfile);

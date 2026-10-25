@@ -4,21 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Account Access — VayuGyan</title>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
 
-  <!-- Google Identity Services SDK -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-  <!-- External Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="auth-page">
 
-  <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-brand-group">
@@ -37,11 +32,9 @@
     </div>
   </nav>
 
-  <!-- Login Section -->
   <main class="auth-main-section">
     <div class="auth-container">
       
-      <!-- Side Branding & Security Badge -->
       <aside class="auth-branding-panel">
         <span class="auth-badge">🛡️ SafeGrid OS Gateway</span>
         <h1 class="auth-hero-title">Secure Telematics & AI Console</h1>
@@ -72,16 +65,13 @@
         </div> -->
       </aside>
 
-      <!-- Interactive Form Container -->
       <section class="auth-form-card">
         
-        <!-- Toggle Tabs -->
         <div class="auth-tabs">
           <button type="button" class="auth-tab-btn active" id="tabSignIn">Sign In</button>
           <button type="button" class="auth-tab-btn" id="tabRegister">Create Account</button>
         </div>
 
-        <!-- Official Google Sign-In Container -->
         <div class="sso-wrapper">
           <div id="g_id_onload"
                data-client_id="601432486990-bm3b2bnkba32ja7iqp2juejon8ac9j1u.apps.googleusercontent.com"
@@ -103,7 +93,6 @@
           <span>or continue with email</span>
         </div>
 
-        <!-- Sign-In Form -->
         <form id="signInForm" class="auth-form">
           <div class="form-group">
             <label for="loginEmail">Email Address</label>
@@ -121,7 +110,6 @@
             </div>
           </div>
 
-          <!-- OTP & New Password Fields (Hidden by default) -->
           <div id="otpResetContainer" style="display: none; background: #f8fafc; border: 1px solid #e2e8f0; padding: 16px; border-radius: 12px; margin-bottom: 16px;">
             <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 12px;">Enter the 6-digit OTP sent to your email and choose a new password.</p>
             
@@ -135,23 +123,19 @@
               <input type="password" id="newPassword" placeholder="Minimum 8 characters">
             </div>
 
-            <!-- Resend OTP Button & Timer Container -->
             <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem;">
               <span id="timerText" style="color: #64748b;">Resend code in <strong id="countdown">60</strong>s</span>
               <button type="button" id="resendOtpBtn" style="background: none; border: none; color: #2563eb; font-weight: 600; cursor: pointer; padding: 0; display: none;">Resend OTP</button>
             </div>
           </div>
 
-          <!-- Clean Error/Success Notice Box -->
           <div id="inlineAuthNotice" style="display: none; margin-bottom: 16px; text-align: center;">
             <p id="inlineNoticeText" style="color: #ef4444; font-size: 0.88rem; font-weight: 600; margin: 0;"></p>
           </div>
 
-          <!-- Dynamic Submit Button -->
           <button type="submit" id="signInSubmitBtn" class="auth-submit-btn">Sign In with Email</button>
         </form>
 
-        <!-- Register Form -->
         <form id="registerForm" class="auth-form" style="display: none;">
           <div class="form-group">
             <label for="regName">Full Name</label>
@@ -190,8 +174,7 @@
       <p class="footer-copyright">© 2026 VayuGyan Technologies. All rights reserved.</p>
     </div>
   </footer>
-
-  <!-- Scripts -->
+  
   <script src="login.js"></script>
 </body>
 </html>
