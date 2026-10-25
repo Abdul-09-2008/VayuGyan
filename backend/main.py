@@ -21,7 +21,7 @@ app = FastAPI(title="VayuGyan Production API", version="1.0")
 # --- CORS MIDDLEWARE BLOCK ---
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all frontend origins during development
+    allow_origins=["*"],  # Allows all frontend origins during development & production
     allow_credentials=True,
     allow_methods=["*"],  # Allows all HTTP methods (POST, GET, etc.)
     allow_headers=["*"],  # Allows all headers
