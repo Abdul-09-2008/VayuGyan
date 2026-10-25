@@ -1,4 +1,8 @@
-// Function to decode JWT Payload from Google Identity Services
+// Global API URL configuration for login
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://127.0.0.1:8000'
+  : 'https://vayugyan.onrender.com';
+  
 function parseJwt(token) {
   try {
     const base64Url = token.split('.')[1];
