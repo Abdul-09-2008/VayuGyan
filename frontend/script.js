@@ -1,4 +1,14 @@
+// ==========================================
+// CONFIGURATION: Environment-Aware API URL
+// ==========================================
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://127.0.0.1:8000'
+  : 'https://vayugyan-backend.onrender.com'; // Replace with your actual live Render backend URL
+
 document.addEventListener("DOMContentLoaded", () => {
+  // ==========================================
+  // 1. LIVE CLOCK & WATCH HANDS ANIMATION
+  // ==========================================
   function updateLiveTime() {
     const now = new Date();
 
@@ -34,6 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLiveTime();
   setInterval(updateLiveTime, 1000);
 
+  // ==========================================
+  // 2. GSAP SCROLLTRIGGER ANIMATIONS
+  // ==========================================
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -55,18 +68,21 @@ document.addEventListener("DOMContentLoaded", () => {
       .to("#phoneWrapper", { x: -350, scale: 1.15, duration: 1 }, "<")
       .to("#phoneScrollContent", { y: -260, duration: 2 });
   }
-});
 
-document.addEventListener('DOMContentLoaded', () => {
+  // ==========================================
+  // 3. AUTHENTICATION & PROFILE AVATAR
+  // ==========================================
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   const navBtn = document.getElementById('authNavBtn');
 
   if (isLoggedIn && navBtn) {
-    // Replace the "Get Started" button with the profile avatar element linking to profile.html
     navBtn.replaceWith(createProfileAvatarElement());
   }
 });
 
+// ==========================================
+// HELPER: CREATE PROFILE AVATAR ELEMENT
+// ==========================================
 function createProfileAvatarElement() {
   const userAvatar = localStorage.getItem('userAvatar') || localStorage.getItem('globalUserAvatar') || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80";
   
