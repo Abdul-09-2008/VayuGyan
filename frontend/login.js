@@ -79,12 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let isEmailAlreadyRegisteredMode = false;
 
-  function setButtonLoading(button, isLoading, loadingText = "Processing...", originalText = "Sign in with Email") {
+  function setButtonLoading(button, isLoading, loadingText = "Processing...", originalText = "Sign In with Email") {
     if (!button) return;
     if (isLoading) {
       button.disabled = true;
       button.classList.add('loading');
-      button.dataset.originalText = originalText || button.textContent;
+      button.dataset.originalText = originalText;
       button.innerHTML = `<span class="btn-spinner"></span> <span>${loadingText}</span>`;
     } else {
       button.disabled = false;
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      setButtonLoading(regSubmitBtn, true, "Creating Account...");
+      setButtonLoading(regSubmitBtn, true, "Creating Account...", "Create Account");
       showNotice(registerAuthNotice, registerNoticeText, "Creating your VayuGyan account...", 'loading');
 
       try {
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (!isOtpMode) {
-        setButtonLoading(signInSubmitBtn, true, "Sending OTP...");
+        setButtonLoading(signInSubmitBtn, true, "Sending OTP...", "Sign In with Email");
         showNotice(signInAuthNotice, signInNoticeText, "Connecting to mail server & dispatching OTP...", 'loading');
 
         try {
@@ -312,7 +312,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (!response.ok) {
             setButtonLoading(signInSubmitBtn, false, "", "Sign In with Email");
-            showNotice(signInAuthNotice, signInNoticeText, data.detail || "Could not send OTP.", 'error');
+            
+            // Smart check: If email not found, guide them to registration
+            if (data.detail && (data.detail.toLowerCase().includes("not found") || data.detail.toLowerCase().includes("registered"))) {
+              showNotice(signInAuthNotice, signInNoticeText, "Email not found. Switching to registration...", 'error');
+              setTimeout(() => {
+                if (regEmailInput) regEmailInput.value = emailInput;
+                if (tabRegister) tabRegister.click();
+                setButtonLoading(signInSubmitBtn, false, "", "Sign In with Email");
+              }, 1500);
+            } else {
+              showNotice(signInAuthNotice, signInNoticeText, data.detail || "Could not send OTP.", 'error');
+            }
             return;
           }
 
@@ -358,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        setButtonLoading(signInSubmitBtn, true, "Verifying OTP...");
+        setButtonLoading(signInSubmitBtn, true, "Verifying OTP...", "Verify OTP & Reset Password");
         showNotice(signInAuthNotice, signInNoticeText, "Verifying OTP & updating password...", 'loading');
 
         try {
@@ -406,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const passwordInput = document.getElementById('loginPassword').value.trim();
 
-      setButtonLoading(signInSubmitBtn, true, "Authenticating...");
+      setButtonLoading(signInSubmitBtn, true, "Authenticating...", "Sign In with Email");
       showNotice(signInAuthNotice, signInNoticeText, "Verifying credentials...", 'loading');
 
       try {
@@ -423,7 +434,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!response.ok) {
           setButtonLoading(signInSubmitBtn, false, "", "Sign In with Email");
-          showNotice(signInAuthNotice, signInNoticeText, data.detail || "Invalid email or password.", 'error');
+
+          // Smart check: If account not found or invalid, guide to registration
+          if (data.detail && (data.detail.toLowerCase().includes("not found") || data.detail.toLowerCase().includes("invalid"))) {
+            showNotice(signInAuthNotice, signInNoticeText, "Account not found. Switching to registration...", 'error');
+            setTimeout(() => {
+              if (regEmailInput) regEmailInput.value = emailInput;
+              if (tabRegister) tabRegister.click();
+            }, 1500);
+          } else {
+            showNotice(signInAuthNotice, signInNoticeText, data.detail || "Invalid email or password.", 'error');
+          }
           return;
         }
 
