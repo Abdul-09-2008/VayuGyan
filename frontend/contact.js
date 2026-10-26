@@ -3,7 +3,7 @@ const API_URL = window.location.hostname === 'localhost' || window.location.host
   : 'https://vayugyan.onrender.com';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const contactForm = document.querySelector('form'); // Or give your form an ID like id="contactForm"
+  const contactForm = document.querySelector('form');
 
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
