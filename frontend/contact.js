@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const fullName = contactForm.querySelector('input[type="text"]').value.trim();
+      const full_Name = contactForm.querySelector('input[type="text"]').value.trim();
       const email = contactForm.querySelector('input[type="email"]').value.trim();
       const inquiryType = contactForm.querySelector('select').value;
       const message = contactForm.querySelector('textarea').value.trim();
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch(`${API_URL}/api/contact`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fullName, email, inquiry_type: inquiryType, message })
+          body: JSON.stringify({ full_Name, email, inquiry_type: inquiryType, message })
         });
 
         if (!response.ok) {
