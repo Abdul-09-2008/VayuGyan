@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let isEmailAlreadyRegisteredMode = false;
 
-  function setButtonLoading(button, isLoading, loadingText = "Processing...", originalText = "") {
+  function setButtonLoading(button, isLoading, loadingText = "Processing...", originalText = "Sign in with Email") {
     if (!button) return;
     if (isLoading) {
       button.disabled = true;
