@@ -19,7 +19,7 @@
     width: 40px;
     height: 40px;
     padding: 0 9px;
-    margin-left: auto;
+    margin-left: 0;
     background: none;
     border: 0;
     cursor: pointer;
@@ -54,6 +54,28 @@
   .nav-menu .nav-link { display: block; padding: 0.85rem 0.25rem; }
 
   .nav-btn { white-space: nowrap; padding: 0.55rem 1rem; font-size: 0.9rem; }
+
+  /* ---------- Profile avatar + dropdown card ---------- */
+  /* Push the button / avatar to the right, next to the hamburger */
+  .nav-container > .nav-btn,
+  .nav-container > .nav-profile-wrapper { margin-left: auto; }
+
+  /* Stop the avatar being the anchor, so the card anchors to the nav bar instead */
+  .nav-profile-wrapper { position: static !important; }
+
+  .profile-card-dropdown {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    width: min(320px, calc(100vw - 24px)) !important;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 100px);
+    margin-top: 8px;
+    overflow-y: auto;
+    transform: none !important;
+    z-index: 2000;
+  }
 
   /* ---------- Hero: stacked, no pin, no overlap ---------- */
   .pin-section {
@@ -161,29 +183,4 @@
   .shop-container { padding-left: 1rem; padding-right: 1rem; }
   .product-card { width: 100%; }
   .product-bottom { flex-wrap: wrap; gap: 0.75rem; }
-}
-
-@media (max-width: 900px) {
-
-  /* Keep the avatar / Get Started button on the right, next to the hamburger */
-  .nav-toggle { margin-left: 0; }
-  .nav-container > .nav-btn,
-  .nav-container > .nav-profile-container { margin-left: auto; }
-
-  /* Open the profile card inside the screen, whatever it was anchored to */
-  .profile-dropdown,
-  .profile-card,
-  .user-dropdown,
-  .nav-profile-dropdown,
-  .profile-menu {
-    position: fixed !important;
-    top: 72px !important;
-    right: 12px !important;
-    left: auto !important;
-    width: min(320px, calc(100vw - 24px)) !important;
-    max-height: calc(100vh - 96px);
-    overflow-y: auto;
-    transform: none !important;
-    z-index: 2000;
-  }
 }
