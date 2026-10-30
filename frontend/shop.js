@@ -13,16 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
         productCards.forEach((card) => {
           const cardCategory = card.getAttribute("data-category");
 
+          // Cancel any pending show/hide from a previous click so fast
+          // filter switching can't hide a card that should be visible
+          clearTimeout(card._filterTimer);
+
           if (selectedCategory === "all" || cardCategory === selectedCategory) {
             card.style.display = "flex";
-            setTimeout(() => {
+            card._filterTimer = setTimeout(() => {
               card.style.opacity = "1";
               card.style.transform = "scale(1)";
             }, 50);
           } else {
             card.style.opacity = "0";
             card.style.transform = "scale(0.95)";
-            setTimeout(() => {
+            card._filterTimer = setTimeout(() => {
               card.style.display = "none";
             }, 300);
           }
@@ -50,6 +54,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+/* ---------- Mobile nav toggle ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.querySelector('.nav-menu');
+  const navbar = document.querySelector('.navbar');
+  if (!navToggle || !navMenu) return;
+
+  function setMenu(open) {
+    navMenu.classList.toggle('is-open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+
+  navToggle.addEventListener('click', () => setMenu(!navMenu.classList.contains('is-open')));
+  navMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('click', (e) => {
+    if (navbar && !navbar.contains(e.target)) setMenu(false);
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 900) setMenu(false); });
+});
+
+/* ---------- Auth nav button -> profile avatar ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   const navBtn = document.getElementById('authNavBtn');
@@ -67,15 +94,28 @@ function createProfileAvatarElement() {
   container.className = 'nav-profile-container';
   container.style.display = 'inline-block';
   container.style.textDecoration = 'none';
-  container.innerHTML = `
-    <img src="${userAvatar}" alt="Profile Avatar" class="nav-profile-avatar" title="Account Settings" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #0F172A; display: block;">
-  `;
 
+  // DOM APIs instead of innerHTML so a stored URL can't inject markup
+  const img = document.createElement('img');
+  img.src = userAvatar;
+  img.alt = 'Profile Avatar';
+  img.className = 'nav-profile-avatar';
+  img.title = 'Account Settings';
+  img.style.cssText = 'width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #0F172A; display: block;';
+
+  container.appendChild(img);
   return container;
 }
 
 function buyProduct(item) {
-  const existingOrders = JSON.parse(localStorage.getItem('userOrders') || '[]');
+  // Corrupt or missing saved orders no longer crash the purchase
+  let existingOrders = [];
+  try {
+    const saved = JSON.parse(localStorage.getItem('userOrders') || '[]');
+    if (Array.isArray(saved)) existingOrders = saved;
+  } catch (err) {
+    existingOrders = [];
+  }
 
   const newOrder = {
     orderId: 'VG-' + Math.floor(100000 + Math.random() * 900000),

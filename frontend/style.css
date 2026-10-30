@@ -2331,3 +2331,24 @@ body {
     transform: scale(1.2);
   }
 }
+
+/* --- FIX PHONE OVERLAP & ENSURE NORMAL FLOW --- */
+@media screen and (max-width: 768px) {
+    /* Force the wrapper and phone mockup into normal stacking order */
+    .phone-mockup {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        float: none !important;
+        margin: 30px auto !important;
+        display: block !important;
+        z-index: 1 !important;
+    }
+
+    /* Ensure text containers sit above and never get covered */
+    .hero-section, header, section {
+        position: relative;
+        z-index: 2;
+    }
+}

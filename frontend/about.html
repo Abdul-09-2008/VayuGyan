@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
@@ -19,7 +20,7 @@
         <span class="nav-brand" style="display:none;">VayuGyan</span>
       </a>
 
-      <ul class="nav-menu">
+      <ul class="nav-menu" id="navMenu">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="shop.html" class="nav-link">Products</a></li>
         <li><a href="contact.html" class="nav-link">Contact Us</a></li>
@@ -27,6 +28,10 @@
       </ul>
 
       <a href="login.html" id="authNavBtn" class="nav-btn">Get Started</a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -167,5 +172,6 @@
   </footer>
 
   <script src="app.js"></script>
+  <script src="nav.js"></script>
 </body>
 </html>

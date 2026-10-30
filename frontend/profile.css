@@ -387,3 +387,33 @@ body.profile-page {
     align-items: flex-start;
   }
 }
+
+/* --- CLEAN MOBILE VIEWPORT ISOLATION --- */
+@media screen and (max-width: 768px) {
+    /* 1. Prevent body from overflowing horizontally */
+    body {
+        overflow-x: hidden;
+        margin: 0;
+        padding: 8px;
+        width: 100%;
+    }
+
+    /* 2. Scale down large text elements so they fit inside mobile cards without clipping */
+    h1 { font-size: 1.25rem !important; }
+    h2 { font-size: 1.1rem !important; }
+    p { font-size: 0.85rem !important; }
+
+    /* 3. Ensure the mobile phone container and cards fit inside the screen width */
+    .app-container, .phone-mockup {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* 4. Stack header elements vertically on mobile */
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+}

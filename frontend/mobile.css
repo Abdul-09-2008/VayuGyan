@@ -1,0 +1,141 @@
+/* Load AFTER style.css. Desktop (>900px) is untouched except the hidden hamburger button. */
+
+.nav-toggle { display: none; }
+
+@media (max-width: 900px) {
+
+  html, body { overflow-x: clip; }
+  img { max-width: 100%; }
+
+  /* ---------- Nav ---------- */
+  .nav-container { position: relative; flex-wrap: nowrap; gap: 0.75rem; }
+  .logo-img { max-height: 44px; width: auto; }
+
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0 9px;
+    margin-left: auto;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-menu {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 1rem 1rem;
+    margin: 0;
+    background: #fff;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, .12);
+    z-index: 1000;
+  }
+  .nav-menu.is-open { display: flex !important; }
+  .nav-menu li { width: 100%; }
+  .nav-menu .nav-link { display: block; padding: 0.85rem 0.25rem; }
+
+  .nav-btn { white-space: nowrap; padding: 0.55rem 1rem; font-size: 0.9rem; }
+
+  /* ---------- Hero: stacked, no pin, no overlap ---------- */
+  .pin-section {
+    position: relative;
+    z-index: 2;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding-bottom: 2rem;
+  }
+  .hero-stage {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 1.5rem 1.25rem 3rem;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .left-hero-panel,
+  .right-hero-panel {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100%;
+    transform: none;
+  }
+
+  .hero-title { font-size: clamp(2rem, 8.5vw, 3rem); line-height: 1.1; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .feature-cards-row { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+
+  .right-hero-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .floating-badge {
+    position: static !important;
+    display: inline-block;
+    order: -1;
+  }
+
+  .analog-watch-container {
+    position: relative !important;
+    inset: auto !important;
+    margin: 0 auto;
+    transform: scale(0.8);
+    transform-origin: top center;
+    margin-bottom: -3rem;
+  }
+
+  .phone-composition-wrapper {
+    position: relative !important;
+    inset: auto !important;
+    width: min(300px, 86%);
+    height: auto !important;
+    margin: 0 auto;
+    transform: none;
+    overflow: visible !important;
+  }
+  .phone-hardware { height: auto !important; min-height: 560px; overflow: visible !important; }
+  .phone-viewport { min-height: 540px; }
+  .phone-scroll-content {
+    max-height: 420px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* The spacer only exists to give the desktop pin room to scroll */
+  .spacer { display: none !important; }
+  .website-footer { position: relative; z-index: 1; clear: both; }
+
+  /* ---------- Product grid (from your original CSS) ---------- */
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .nav-btn { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
+}

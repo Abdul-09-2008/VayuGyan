@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
   <script src="app.js"></script>
 </head>
 <body>
@@ -21,7 +22,7 @@
         <span class="nav-brand" style="display:none;">VayuGyan</span>
       </a>
 
-      <ul class="nav-menu">
+      <ul class="nav-menu" id="navMenu">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="shop.html" class="nav-link active">Products</a></li>
         <li><a href="contact.html" class="nav-link">Contact Us</a></li>
@@ -29,6 +30,10 @@
       </ul>
 
       <a href="login.html" id="authNavBtn" class="nav-btn">Get Started</a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -75,7 +80,7 @@
         <div class="product-card" data-category="software">
             <div class="product-badge software">Software</div>
             <div class="product-image-box">
-                <img src="images/safegrid.jpeg" alt="DocVerify AI Suite" class="product-image">
+                <img src="images/safegrid.jpeg" alt="SafeGrid" class="product-image">
             </div>
             <div class="product-info">
                 <span class="product-category">Women Safety</span>
@@ -89,7 +94,7 @@
 
         <div class="product-card" data-category="wearable">
           <div class="product-image-box">
-            <img src="images/coming-soon.jpg" alt="KrishiSetu Soil Probe" class="product-image" onerror="this.src='https://www.magnific.com/free-photos-vectors/coming-soon-poster'">
+            <img src="images/coming-soon.jpg" alt="KrishiSetu Soil Probe" class="product-image" onerror="this.onerror=null; this.style.display='none';">
           </div>
           <div class="product-info">
             <span class="product-category">Smart Agriculture</span>
@@ -109,7 +114,7 @@
         <div class="product-card" data-category="software">
           <div class="product-badge software">Software</div>
           <div class="product-image-box">
-            <img src="images/coming-soon.jpg" alt="DocVerify AI Suite" class="product-image" onerror="this.src='https://www.magnific.com/free-photos-vectors/coming-soon-poster'">
+            <img src="images/coming-soon.jpg" alt="DocVerify AI Suite" class="product-image" onerror="this.onerror=null; this.style.display='none';">
           </div>
           <div class="product-info">
             <span class="product-category">Enterprise AI</span>

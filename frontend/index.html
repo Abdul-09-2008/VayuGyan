@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -19,10 +20,10 @@
   <nav class="navbar">
     <div class="nav-container">
       <div class="nav-brand-group">
-        <img src =  "images/logo.png" alt = "Logo" class = "logo-img">
+        <img src="images/logo.png" alt="VayuGyan logo" class="logo-img">
       </div>
 
-      <ul class="nav-menu">
+      <ul class="nav-menu" id="navMenu">
         <li><a href="index.html" class="nav-link active">Home</a></li>
         <li><a href="shop.html" class="nav-link">Products</a></li>
         <li><a href="contact.html" class="nav-link">Contact Us</a></li>
@@ -30,14 +31,16 @@
       </ul>
 
       <a href="login.html" id="authNavBtn" class="nav-btn">Get Started</a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  
   <section class="pin-section" id="pinSection">
     <div class="hero-stage">
 
-      
       <div class="left-hero-panel" id="leftPanel">
         <h1 class="hero-title">Cutting-Edge Software. Smart Hardware. Built For the Future.</h1>
         <p class="hero-subtitle">Custom software & innovative hardware solutions tailored to power your ideas.</p>
@@ -65,7 +68,6 @@
       </div>
 
       <div class="right-hero-panel">
-
 
         <div class="analog-watch-container" id="watchContainer">
           <div class="strap strap-top"></div>
@@ -97,7 +99,7 @@
               </div>
 
               <div class="phone-scroll-content" id="phoneScrollContent">
-                
+
                 <div class="project-slide">
                   <span class="project-tag tag-safegrid">SafeGrid APP v1.0</span>
                   <h2 class="project-title">SafeGrid APP</h2>
@@ -112,7 +114,7 @@
                   <h2 class="project-title">Smart Agriculture</h2>
                   <p class="project-desc">Scanning Vegetables Quality On The Go.</p>
                   <div class="metric-box">
-                    <div class="metric-row"><span>Status</span><span class="status-green">Comiing Soon</span></div>
+                    <div class="metric-row"><span>Status</span><span class="status-green">Coming Soon</span></div>
                   </div>
                 </div>
 

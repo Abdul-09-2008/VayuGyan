@@ -11,16 +11,17 @@
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-brand-group">
-        <img src =  "images/logo.png" alt = "Logo" class = "logo-img">
+        <img src="images/logo.png" alt="VayuGyan logo" class="logo-img">
       </a>
 
-      <ul class="nav-menu">
+      <ul class="nav-menu" id="navMenu">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="shop.html" class="nav-link">Products</a></li>
         <li><a href="contact.html" class="nav-link active">Contact Us</a></li>
@@ -28,6 +29,10 @@
       </ul>
 
       <a href="login.html" id="authNavBtn" class="nav-btn">Get Started</a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -114,6 +119,7 @@
 
   </div>
 
+  <script src="nav.js"></script>
   <script src="contact.js"></script>
 </body>
 </html>
